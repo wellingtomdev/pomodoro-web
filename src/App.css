@@ -1,0 +1,114 @@
+@font-face {
+    font-family: font;
+    src: url('./fonts/static/Rubik-Regular.ttf');
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    font-family: font;
+    font-size: 30px;
+}
+
+html,body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+}
+
+:root{
+    --color1: #f5f5f5;
+    --color2: #282830;
+    --color3: #282830;
+    --color4: #3c3c41;
+}
+
+body{
+    background-color: var(--color1);
+    color: var(--color2);
+}
+
+body[started]{
+    background-color: var(--color2);
+    color: var(--color1);
+}
+
+#display{
+    /* background-color: red; */
+    padding: 10px;
+}
+
+#display *{
+    display: flex;
+    justify-content: center;
+}
+
+#tags{
+    margin-bottom: 50px;
+}
+
+#tags div{
+    font-size: 30px;
+    height: 36px;
+    color: #777;
+}
+
+#tags #focus{
+    display: none;
+}
+
+#tags #pause{
+    display: flex;
+}
+
+body[started] #tags #focus{
+    display: flex;
+}
+
+body[started] #tags #pause{
+    display: none;
+}
+
+#timer{
+    justify-content: space-between;
+    /* background-color: blue; */
+    padding: 10px;
+    margin-bottom: 30px;
+    min-width: 260px;
+}
+
+#timer .camp{
+    align-items: baseline;
+
+}
+
+#timer .time{
+    font-size: 60px;
+}
+
+#timer .unid{
+    font-size: 20px;
+}
+
+
+#controls .bot{
+    cursor: pointer;
+    margin: 5px;
+    background-color: #0000;
+    border-radius: 30px;
+    transition: 0.3s;
+    padding: 10px 20px;
+}
+
+body #controls .bot:hover{
+    background-color: #0002;
+}
+
+body[started] #controls .bot:hover{
+    background-color: #fff2;
+}

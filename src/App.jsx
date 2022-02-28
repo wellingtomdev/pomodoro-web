@@ -95,7 +95,7 @@ function viewManager(){
 
       const newValueFromTitle = seconds ? `Pomodoro - ${parseInt(seconds / 60)}min ${parseInt(seconds % 60)}sec ` : `Pomodoro`
 
-      if(titleEl.innerHTML != newValueFromTitle){
+      if(titleEl.innerHTML !== newValueFromTitle){
           titleEl.innerHTML = newValueFromTitle
       }
   
@@ -173,7 +173,7 @@ function controls(values){
             values.showButtons('reset','play')
             
             
-            if(mode == 'focus'){
+            if(mode === 'focus'){
                 view.stop()
             }
 
@@ -183,7 +183,7 @@ function controls(values){
 
             if(paused){ 
                 timer.play()
-                if(mode == 'focus'){
+                if(mode === 'focus'){
                     view.start()
                 }
             }else{
@@ -213,7 +213,7 @@ function controls(values){
 
 setInterval(()=>{
     externSetSecondsLeft(timer.secondsLeft())
-    if(mode == 'focus'){
+    if(mode === 'focus'){
         view.atualizeTitle(timer.secondsLeft())
     }
 }, 500)

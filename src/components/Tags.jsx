@@ -1,7 +1,5 @@
 
-
-
-export default props => {
+const Tags = props => {
     return (
         <div id='tags'>
             <div id='focus'>Focus</div>
@@ -9,3 +7,5 @@ export default props => {
         </div>
     )
 }
+
+export default Tags

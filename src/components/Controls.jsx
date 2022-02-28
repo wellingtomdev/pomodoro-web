@@ -1,7 +1,5 @@
 
-
-
-export default props => {
+const Controls = props => {
     return (
         <div id='controls'>
             <div className="bot" id='reset-c' style={{display:'none'}}>Reset</div>
@@ -10,3 +8,5 @@ export default props => {
         </div>
     )
 }
+
+export default Controls

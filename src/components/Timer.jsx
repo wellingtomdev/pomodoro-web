@@ -1,6 +1,5 @@
 
-
-export default props => {
+const Timer = props => {
     return (
         <div id="timer">
             <div className="camp">
@@ -14,3 +13,5 @@ export default props => {
         </div>
     )
 }
+
+export default Timer

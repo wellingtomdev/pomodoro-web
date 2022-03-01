@@ -1,3 +1,5 @@
+export default timerManager()
+
 function timerManager(){
 
     function getTime(){
@@ -35,11 +37,11 @@ function timerManager(){
     function secondsLeft(){
         if(!finishTime) { return 0 }
         const timeLeft =  finishTime - ( timePause ? timePause : getTime() )
-        const seconds = parseInt( timeLeft / 1000 ) + 1
+        const seconds = parseInt( timeLeft / 1000 )
         if(seconds < -1){ CALLBACK() }
         return seconds
     }
-   
+ 
     function stop(){
         timePause = getTime()
         if(lastIdTimeout){
@@ -53,9 +55,6 @@ function timerManager(){
         timePause = null
     }
 
-    
-    
-
     return {
         secondsLeft,
         schedule,
@@ -63,7 +62,5 @@ function timerManager(){
         stop,
         play,
     }
-    
+  
 }
-
-export default timerManager()

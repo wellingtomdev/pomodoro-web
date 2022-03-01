@@ -115,7 +115,6 @@ const timer = timerManager()
 
 const view = viewManager()
 let externSetSecondsLeft = ()=>{}
-let atualizeTitle = false
 
 let paused = false;
 let mode = 'pause'

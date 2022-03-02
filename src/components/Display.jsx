@@ -2,137 +2,70 @@ import React, {useState} from 'react'
 
 import Tags from './Tags'
 import Timer from './Timer'
+import TimeSelect from './TimeSelect'
 import Controls from './Controls'
 
-import view from './viewManager.js'
-import timer from './timerManager.js'
-import { notifyBreak, notifyFocus } from './notification'
+import methods from './methods'
 
+const { timer, view, preferencies, buttonMethods, focusInSeconds } = methods
 
-const audioEl = document.querySelector('#audioNotification')
+let page = 'home'
 
 let externSetSecondsLeft = ()=>{}
 
-let paused = false;
-let mode = 'pause'
-
-const oneMinuteInSeconds = 60
-const focusSeconds = oneMinuteInSeconds * 25
-const breakSeconds = oneMinuteInSeconds * 5
-
-function playAudio(){
-    audioEl.play()
-}
-
-function controls(values){
-    
-
-    function onClick(buttonName){
-
-        if(buttonName === 'play'){
-            return play()
-        }
-
-        if(buttonName === 'pause'){
-        return pause()
-        }
-
-        if(buttonName === 'reset'){
-            return reset()
-        }
-    
-
-        function focus(){
-
-            mode = 'focus'
-            timer.schedule(()=>{
-                breakTime()
-                notifyBreak()
-                playAudio()
-            }, focusSeconds * 1000)
-            view.start()
-
-        }
-
-        function breakTime(){
-
-            mode = 'pause'
-            timer.schedule(()=>{
-                focus()
-                notifyFocus()
-                playAudio()
-            }, breakSeconds * 1000)
-            view.stop()
-            
-        }
-
-        function pause(){
-
-            timer.stop()
-            paused = true
-            values.showButtons('reset','play')
-            
-            
-            if(mode === 'focus'){
-                view.stop()
-            }
-
-        }
-
-        function play(){
-
-            if(paused){ 
-                timer.play()
-                if(mode === 'focus'){
-                    view.start()
-                }
-            }else{
-                focus()
-            }
-            
-            values.showButtons('reset','pause')
-
-            paused = false
-
-        }
-
-        function reset(){
-
-            mode = 'pause'
-            timer.clear()
-            paused = false
-            view.stop()
-            values.showButtons('play')
-
-        }
-
-    }
-
-    values.onClick(onClick)
-
-}
-
 setInterval(()=>{
-    const secondsLeft = timer.secondsLeft()
-    externSetSecondsLeft((secondsLeft === 0 && mode === 'pause') ? focusSeconds : secondsLeft)
-    if(mode === 'focus'){
+
+    if(page === 'focus'){
+        const secondsLeft = timer.secondsLeft()
+        externSetSecondsLeft((secondsLeft === 0 && page === 'pause') ? focusInSeconds() : secondsLeft)
         view.atualizeTitle(secondsLeft)
+        return
     }
+    if(page !== 'pause'){
+        externSetSecondsLeft(focusInSeconds())
+    }
+
 }, 500)
 
+let externSetButtonsSetup = ()=>{}
 
-function Display() {
+function esbs(){ externSetButtonsSetup(pageButtons[page]) }
 
-  const [secondsLeft, setSecondsLeft] = useState(focusSeconds)
-  externSetSecondsLeft = setSecondsLeft
+const pageButtons = {
+    home: {edit: ()=>{ page = 'edit'; esbs(); buttonMethods.edit() }, play: ()=>{ page = 'focus'; esbs(); buttonMethods.play() }},
+    edit: {cancel: ()=>{ page = 'home'; esbs(); buttonMethods.cancel() }, save: ()=>{ page = 'home'; esbs(); buttonMethods.save(getTime()) }},
+    focus: {reset: ()=>{ page = 'home'; esbs(); buttonMethods.reset() }, pause: ()=>{ page = 'pause'; esbs(); buttonMethods.pause() }},
+    pause: {reset: ()=>{ page = 'home'; esbs(); buttonMethods.reset() }, play: ()=>{ page = 'focus'; esbs(); buttonMethods.play() }},
+}
 
-  return (
-    <div id="display" >
-        <Tags />
-        <Timer secondsLeft={secondsLeft}/>
-        <Controls exportValues={controls}/>
-    </div>
-  )
+let getTime = ()=>{}
+
+function Display() { 
+
+    const [secondsLeft, setSecondsLeft] = useState(focusInSeconds())
+    externSetSecondsLeft = setSecondsLeft
+    
+    const [buttonsSetup, setButtonsSetup] = useState(pageButtons[page])
+    externSetButtonsSetup = setButtonsSetup
+
+    return (
+        <div id='container'>
+            <Tags />
+            <div id="display" >
+                { page !== 'edit' ?
+                <Timer secondsLeft={secondsLeft}/>
+                :
+                <TimeSelect
+                    getTime={value => getTime = value}
+                    initialFocusTime={preferencies.times()?.focusTime}
+                    initialBreakTime={preferencies.times()?.breakTime}
+                />
+                }
+                
+            </div>
+            <Controls setup={buttonsSetup}/>
+        </div>
+    )
 
 }
 

@@ -1,0 +1,49 @@
+#timer-select{
+    flex-direction: column;
+    min-width: 260px;
+}
+
+#timer-select #tags{
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+}
+
+#timer-select .display{
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 30px;
+    width: 100%;
+
+}
+
+
+#timer-select .camp{
+    align-items: baseline;
+    justify-content: baseline;
+    min-width: 80px;
+}
+
+#timer-select .time{
+    font-size: 60px;
+}
+
+#timer-select .unid{
+    font-size: 20px;
+    height: 100%;
+    align-items: center;
+}
+
+
+.counter{
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+}
+
+.counter .arrow-button{
+    width: 100%;
+    min-width: 50px;
+    cursor: pointer;
+    padding: 10px 0;
+}

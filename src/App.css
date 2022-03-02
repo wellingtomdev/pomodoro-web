@@ -38,12 +38,12 @@ body[started]{
     color: var(--color1);
 }
 
-#display{
+#container{
     /* background-color: red; */
     padding: 10px;
 }
 
-#display *{
+#container *{
     display: flex;
     justify-content: center;
 }

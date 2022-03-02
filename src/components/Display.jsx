@@ -24,6 +24,9 @@ setInterval(()=>{
     if(page !== 'pause'){
         externSetSecondsLeft(focusInSeconds())
     }
+    if(page !== 'focus'){
+        view.atualizeTitle(0)
+    }
 
 }, 500)
 

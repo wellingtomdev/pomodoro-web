@@ -3,35 +3,31 @@
     min-width: 260px;
 }
 
-#timer-select #tags{
-    justify-content: space-between;
-    width: 100%;
-    margin: 0;
-}
-
 #timer-select .display{
     justify-content: space-between;
     padding: 10px;
-    margin-bottom: 30px;
+    margin: 20px 0;
     width: 100%;
+    box-shadow: #bbb 0px 3px 5px;
+    border-radius: 5px;
+}
 
+#timer-select  .tag{
+    font-size: 1rem;
+    margin-bottom: 0.7rem;
+    height: 36px;
+    color: #777;
 }
 
 
-#timer-select .camp{
-    align-items: baseline;
-    justify-content: baseline;
-    min-width: 80px;
+#timer-select .selected{
+    flex-direction: column;
 }
 
 #timer-select .time{
-    font-size: 60px;
-}
-
-#timer-select .unid{
-    font-size: 20px;
-    height: 100%;
-    align-items: center;
+    font-size: 2rem;
+    flex-direction: column;
+    text-align: center;
 }
 
 
@@ -39,6 +35,8 @@
     flex-direction: column;
     align-items: center;
     margin: auto;
+    padding: 10px 20px;
+    /* border: 1px solid #ddd; */
 }
 
 .counter .arrow-button{

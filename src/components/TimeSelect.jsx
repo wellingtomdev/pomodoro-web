@@ -25,9 +25,20 @@ function Counter(props){
 
     return (
         <div className='counter'>
-            <div onClick={()=>sum(+1)} className='arrow-button'><Arrow direction={true}/></div>
-            <div className='time'>{time}</div>
-            <div onClick={()=>sum(-1)} className='arrow-button'><Arrow direction={false}/></div>
+            <div className='tag'>{props.tag || ''}</div>
+           
+            <div className='selected'>
+                <div onClick={()=>sum(+1)} className='arrow-button'>
+                    <Arrow direction={true}/>
+                </div>
+                <div className='time'>
+                    {time}
+                </div>
+                <div onClick={()=>sum(-1)} className='arrow-button'>
+                    <Arrow direction={false}/>
+                </div>
+            </div>
+           
         </div>
     )
 
@@ -50,26 +61,20 @@ const TimerSelect = props => {
     return (
         <>
             <div id="timer-select">
-                <h2 style={{color:'#555', marginBottom:'30px',}}>Time configuration</h2>
-                <div id='tags'>
-                    <div>Focus</div>
-                    <div>break</div>
-                </div>
+                <h2 style={{color:'#555'}}>Time configuration</h2>
+                <p style={{fontSize: '.5rem', color:'#555'}}>( In minutes )</p>
+   
                 <div className='display'>
-                    <div className="camp">
-                        <Counter
-                            initial={focusTime}
-                            modifyNewValue={value=>{focusTime = value}}
-                        />
-                        <div className="unid">min</div>
-                    </div>
-                    <div className="camp">
-                        <Counter
-                            initial={breakTime}
-                            modifyNewValue={value=>{breakTime = value}}
-                        />
-                        <div className="unid">min</div>
-                    </div>
+                    <Counter
+                        tag='Focus'
+                        initial={focusTime}
+                        modifyNewValue={value=>{focusTime = value}}
+                    />
+                    <Counter
+                        tag='Break'
+                        initial={breakTime}
+                        modifyNewValue={value=>{breakTime = value}}
+                    />
                 </div>
             </div>
         </>

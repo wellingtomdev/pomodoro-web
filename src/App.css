@@ -101,14 +101,24 @@ body[started] #tags #pause{
     margin: 5px;
     background-color: #0000;
     border-radius: 30px;
-    transition: 0.3s;
+    transition: .1s;
     padding: 10px 20px;
+    border: 1px solid #fff0;
 }
 
-body #controls .bot:hover{
-    background-color: #0002;
+@media(min-width: 600px){
+
+    body #controls .bot:hover{
+        box-shadow: #aaa 0px 2px 2px;
+        border: 1px solid #eee;
+        transform: translate(0, -2px);
+    }
+    
+    body[started] #controls .bot:hover{
+        box-shadow: #000 0px 2px 2px;
+        border: 1px solid #222;
+        transform: translate(0, -2px);
+    }
+
 }
 
-body[started] #controls .bot:hover{
-    background-color: #fff2;
-}

@@ -14,7 +14,6 @@
 
 html,body{
     width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,8 +38,12 @@ body[started]{
 }
 
 #container{
-    /* background-color: red; */
+    height: 100vh;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #container *{
@@ -122,3 +125,39 @@ body[started] #tags #pause{
 
 }
 
+
+.contents{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 800px;
+    width: 90%;
+    margin: 20px auto;
+    height: 100vh;
+}
+
+
+.contents section{
+    margin: 30px 0;
+}
+
+.contents a{
+    color: var(--color2);
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.contents h2{
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.contents h3{
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.contents p{
+    font-size: 20px;
+}

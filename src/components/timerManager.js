@@ -46,11 +46,12 @@ function timerManager(){
         timePause = getTime()
         if(lastIdTimeout){
             clearTimeout(lastIdTimeout)
+            lastIdTimeout = null
         }
     }
 
     function play(){
-        setTimeout(CALLBACK, finishTime - timePause)
+        lastIdTimeout = setTimeout(CALLBACK, finishTime - timePause)
         finishTime += getTime() - timePause 
         timePause = null
     }

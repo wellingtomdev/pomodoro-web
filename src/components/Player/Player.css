@@ -1,0 +1,7 @@
+#audio-player{
+    position: fixed;
+    bottom: 0;
+    width: 10%;
+    height: 50px;
+    background-color: #777;
+}

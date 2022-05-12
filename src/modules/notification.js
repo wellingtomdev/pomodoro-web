@@ -3,6 +3,8 @@ const notificate = (title, body) => new Notification(title, {body, icon:'../toma
 verificate()
 async function verificate(callback = ()=>{}){
 
+    if (typeof window === "undefined") { return }
+
     if (!Notification) {
         alert("Este browser não suporta notificações de Desktop");
         callback(false)

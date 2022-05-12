@@ -4,6 +4,8 @@ function viewManager(){
 
     let modeStarted = false;
   
+    if (typeof window === "undefined") { return }
+    
     const body = document.querySelector('body')
     const titleEl = document.querySelector('title')
   

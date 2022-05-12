@@ -5,7 +5,7 @@ import Timer from './Timer'
 import TimeSelect from './TimeSelect'
 import Controls from './Controls'
 
-import methods from './methods'
+import methods from '../modules/methods'
 
 const { timer, view, preferencies, buttonMethods, focusInSeconds } = methods
 
@@ -18,14 +18,14 @@ setInterval(()=>{
     if(page === 'focus'){
         const secondsLeft = timer.secondsLeft()
         externSetSecondsLeft((secondsLeft === 0 && page === 'pause') ? focusInSeconds() : secondsLeft)
-        view.atualizeTitle(secondsLeft)
+        view?.atualizeTitle(secondsLeft)
         return
     }
     if(page !== 'pause'){
         externSetSecondsLeft(focusInSeconds())
     }
     if(page !== 'focus'){
-        view.atualizeTitle(0)
+        view?.atualizeTitle(0)
     }
 
 }, 500)

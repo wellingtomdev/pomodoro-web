@@ -1,5 +1,3 @@
-import './TimerSelect.css'
-
 import { useState } from 'react' 
 
 function Arrow(props){

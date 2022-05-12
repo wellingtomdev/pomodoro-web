@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import './App.css';
 
 import If from './components/If'
 import Display from './components/Display'
-import Player from './components/Player/Player'
-import Playlist from './components/Playlist/Playlist';
+import Player from './components/Player'
+import Playlist from './components/Playlist';
 
 
 import { faker } from '@faker-js/faker'

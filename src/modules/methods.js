@@ -7,6 +7,7 @@ import { notifyBreak, notifyFocus } from './notification'
 function managerPreferencies(){
 
     function times(){
+        if (typeof window === "undefined") { return }
         const value = localStorage.getItem('times')
         if(value){
             return JSON.parse(value)
@@ -15,6 +16,7 @@ function managerPreferencies(){
 
 
     function setTimes({focusTime, breakTime}){
+        if (typeof window === "undefined") { return }
         return localStorage.setItem('times', JSON.stringify({focusTime, breakTime}))
     }
 
@@ -28,9 +30,6 @@ function managerPreferencies(){
 const preferencies = managerPreferencies()
 
 
-const audioEl = document.querySelector('#audioNotification')
-
-
 let paused = false;
 let mode = 'pause'
 
@@ -39,7 +38,8 @@ const focusSeconds = () => oneMinuteInSeconds * (preferencies.times()?.focusTime
 const breakSeconds = () => oneMinuteInSeconds * (preferencies.times()?.breakTime || 5)
 
 function playAudio(){
-    audioEl.play()
+    const audio = new Audio('/notificationSond.mp3')
+    audio.play()
 }
 
 
@@ -51,7 +51,7 @@ function focus(){
         notifyBreak()
         playAudio()
     }, focusSeconds() * 1000)
-    view.start()
+    view?.start()
 
 }
 
@@ -63,7 +63,7 @@ function breakTime(){
         notifyFocus()
         playAudio()
     }, breakSeconds() * 1000)
-    view.stop()
+    view?.stop()
     
 }
 
@@ -74,7 +74,7 @@ function pause(){
    
     
     if(mode === 'focus'){
-        view.stop()
+        view?.stop()
     }
 
 }
@@ -84,7 +84,7 @@ function play(){
     if(paused){ 
         timer.play()
         if(mode === 'focus'){
-            view.start()
+            view?.start()
         }
     }else{
         focus()
@@ -99,7 +99,7 @@ function reset(){
     mode = 'pause'
     timer.clear()
     paused = false
-    view.stop()
+    view?.stop()
 }
 
 function edit(){

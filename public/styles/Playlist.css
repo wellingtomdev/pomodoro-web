@@ -1,30 +1,5 @@
-li{
-    list-style: none;
-}
-
-.playlist-bot{
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 20px;
-}
-
-.playlist-bot .bot{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #0000;
-    transition: .2s;
-    cursor: pointer;
-}
 
 
-.playlist-bot .bot:hover{
-    background-color: #0003;
-}
 
 #playlist{
     display: flex;
@@ -49,6 +24,7 @@ li{
 #playlist-body{
     min-width: 300px;
 }
+
 
 #playlist-track{
     display: flex;

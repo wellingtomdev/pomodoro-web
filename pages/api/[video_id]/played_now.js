@@ -1,11 +1,10 @@
-const infoMedia = require('../../../src/infoMedia')
-
+const db = require('../../../src/firestore')
 
 async function route(req, res) {
     try {
         const { video_id } = req.query
-        const info = await infoMedia.getInfo(video_id)
-        res.json(info)
+        const result = await db.setPlayedNow(video_id)
+        res.json(result)
     } catch (error) {
         res.status(500).json({ error })
     }

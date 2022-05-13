@@ -42,3 +42,10 @@ li{
     --color3: #282830;
     --color4: #3c3c41;
 }
+
+.adjustText{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}

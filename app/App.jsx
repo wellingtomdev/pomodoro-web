@@ -28,9 +28,11 @@ function App() {
   const [selectedTrack, setSelectedTrack] = useState(undefined)
   const [tracks, setTracks] = useState([])
 
-  useEffect(async () => {
+  useEffect(refreshTracks, [])
+
+  async function refreshTracks() {
     setTracks(await api.getTracks())
-  }, [])
+  }
 
   return (
     <>
@@ -40,10 +42,17 @@ function App() {
       {/* </If> */}
 
       <If condition={opened}>
-        <Playlist tracks={tracks} setSelected={track => {
-          setOpened(false)
-          setSelectedTrack(track)
-          }}/>
+        <Playlist
+          tracks={tracks}
+          refreshTracks={refreshTracks}
+          setSelected={track => {
+            if(track.video_id == selectedTrack?.video_id) { return }
+            setOpened(false)
+            setSelectedTrack(track)
+            api.playedNow(track.video_id)
+          }}
+        />
+          
       </If>
 
       <Player

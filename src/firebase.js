@@ -6,7 +6,7 @@ function initializeFirebase() {
     
 }
 
-const { getFirestore } = require('firebase-admin/firestore')
+const { getFirestore, Timestamp } = require('firebase-admin/firestore')
 
 
 function initied(){
@@ -30,4 +30,5 @@ function firestore(){
 module.exports = {
     initializeFirebase,
     firestore,
+    Timestamp,
 }

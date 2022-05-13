@@ -103,7 +103,7 @@ function reset(){
 }
 
 function edit(){
-    console.log('edit')
+    // console.log('edit')
 }
 
 
@@ -113,7 +113,7 @@ function focusInSeconds(){
 }
 
 function cancel(){
-    console.log('cancel')
+    // console.log('cancel')
 }
 
 function save({focusTime, breakTime}){

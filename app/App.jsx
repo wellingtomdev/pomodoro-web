@@ -6,11 +6,11 @@ import Player from './components/Player'
 import Playlist from './components/Playlist'
 import { BackSvg, MusicSvg } from './components/Icons'
 
-import database from './modules/firebase'
+// import { event } from './modules/firebase'
 import api from './modules/api'
 
 
-function PlaylistBottom(props) {
+function PlaylistButtom(props) {
   const {opened, setOpened} = props
   return (
     <div className='playlist-bot'>
@@ -37,9 +37,7 @@ function App() {
   return (
     <>
 
-      {/* <If condition={!opened}> */}
-        <Display blurred={opened}/>
-      {/* </If> */}
+      <Display blurred={opened} />
 
       <If condition={opened}>
         <Playlist
@@ -60,7 +58,7 @@ function App() {
         setTrack={setSelectedTrack}
       />
 
-      <PlaylistBottom {...{opened, setOpened}}/>
+      <PlaylistButtom {...{opened, setOpened}}/>
 
     </>
   )

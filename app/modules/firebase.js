@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app"
-// import { getAnalytics } from "firebase/analytics"
-import { getFirestore, doc, getDoc, getDocs, setDoc, collection, addDoc } from "firebase/firestore";
+import { getAnalytics, logEvent } from "firebase/analytics"
 
 const firebaseConfig = {
     apiKey: "AIzaSyBsOtN30SI8hxXjzwOq-g3VMy9z2HbO07Y",
@@ -14,29 +13,15 @@ const firebaseConfig = {
 
 
 const app = initializeApp(firebaseConfig)
-// const analytics = getAnalytics(app)
-const db = getFirestore()
+const analytics = getAnalytics(app)
 
-
-async function getTracks() {
-    const collectionRef = await collection(db, `tracks`)
-    const docsRef = await getDocs(collectionRef)
-    return docsRef.docs.map(doc => doc.data())
+function event(name, params){
+    return logEvent(analytics, name, params)
 }
 
-async function addTrack(track) {
-    const collectionRef = await collection(db, `tracks`)
-    const docRef = await addDoc(collectionRef, track)
-    return docRef.id
-}
-
-
-
-
-
-
-
+export { event }
 
 export default {
-    getTracks,
+    analytics,
+    event,
 }

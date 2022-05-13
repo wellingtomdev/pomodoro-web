@@ -31,12 +31,19 @@ const Player = props => {
                     </div>
                 </div>
                 <div className='media_player'>
+                    {/* <div className='player_controls'>
+                        <div className='loop buttom'>
+                            Loop
+                        </div>
+                        <div className='loop buttom'>
+                            Next
+                        </div>
+                    </div> */}
                     <iframe
-                        src={`https://www.youtube.com${embed}?autoplay=1`}
+                        src={`https://www.youtube.com${embed}?autoplay=1&rel=0&loop=1&playlist=${video_id}`}
                         title="YouTube video player"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        loop={true}
                         allowFullScreen
                     />
                 </div>

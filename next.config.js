@@ -21,7 +21,7 @@ function initializeFirebase() {
     
 }
 
-global.firebase = initializeFirebase()
+process.firebase = initializeFirebase()
 
 
 const nextConfig = {

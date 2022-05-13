@@ -1,3 +1,4 @@
+const firebase = process.firebase 
 const db = firebase.firestore
 
 

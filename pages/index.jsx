@@ -1,4 +1,4 @@
-import App from '../src/App'
+import App from '../app/App'
 
 function Home(props) {
     return App(props)

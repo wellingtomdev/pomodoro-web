@@ -5,3 +5,6 @@
 /.next
 
 .env
+.env.local
+
+serviceAccountKey.json

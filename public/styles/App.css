@@ -23,15 +23,32 @@ body[started]{
     align-items: center;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
-    background-color: #0000;
-    transition: .2s;
+    padding: 5px;
+    border-radius: 10%;
+    transition: .3s;
     cursor: pointer;
 }
 
 
-.playlist-bot .bot:hover{
-    background-color: #0003;
+
+.playlist-bot .bot svg{
+    width: 100%;
+    height: 100%;
+    fill: #333;
+    transition: .2s;
+
+}
+
+.playlist-bot .bot:hover svg{
+    fill: #111;
+}
+
+body[started] .playlist-bot .bot svg{
+    fill: #aaa;
+}
+
+body[started] .playlist-bot .bot:hover svg{
+    fill: #ddd;
 }
 
 #container{
@@ -41,6 +58,12 @@ body[started]{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    -webkit-filter: blur(0);
+    transition: .1s;
+}
+
+#container.blurred{
+    -webkit-filter: blur(4px);
 }
 
 #container *{

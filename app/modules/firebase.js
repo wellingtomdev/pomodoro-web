@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app"
 // import { getAnalytics } from "firebase/analytics"
-import { getFirestore, doc, getDoc, getDocs, setDoc, collection } from "firebase/firestore";
+import { getFirestore, doc, getDoc, getDocs, setDoc, collection, addDoc } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBsOtN30SI8hxXjzwOq-g3VMy9z2HbO07Y",
@@ -24,11 +24,17 @@ async function getTracks() {
     return docsRef.docs.map(doc => doc.data())
 }
 
-getTracks().then(tracks => {
-    console.log(tracks)
-}).catch(err => {
-    console.log(err)
-})
+async function addTrack(track) {
+    const collectionRef = await collection(db, `tracks`)
+    const docRef = await addDoc(collectionRef, track)
+    return docRef.id
+}
+
+
+
+
+
+
 
 
 export default {

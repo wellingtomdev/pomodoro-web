@@ -22,7 +22,7 @@ function BaseHtml(props) {
 
       <Head>
         <meta charSet="utf-8" />
-        <link rel="icon" href="%PUBLIC_URL%/tomato.png" />
+        <link rel="icon" href="/tomato.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
         <meta name="description" content="Pomodoro app, um timer para te auxiliar no foco contínuo no trabalho, estudo, leitura e qualquer outra tarefa que necessite de gerenciamento de tempo." />

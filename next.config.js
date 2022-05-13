@@ -1,33 +1,28 @@
 
-function initializeFirebase() {
 
-    const fs = require('fs')
-
-    if (!fs.existsSync('./serviceAccountKey.json')) {
-        const credentials = process.env.SERVICE_ACCOUNT_KEY
-        fs.writeFileSync('./serviceAccountKey.json', credentials)
+function firebaseCredentials(){
+    try {
+        const fs = require('fs')
+        const filepath = './serviceAccountKey.json'
+        if (!fs.existsSync(filepath)) {
+            fs.writeFileSync(filepath, process.env.SERVICE_ACCOUNT_KEY)
+        }
+        return require(filepath)
+    } catch (error) {
+        return false
     }
-
-    const serviceAccount = require('./serviceAccountKey.json');
-
-    const { initializeApp, cert } = require('firebase-admin/app')
-    const { getFirestore } = require('firebase-admin/firestore')
-
-    initializeApp({ credential: cert(serviceAccount) })
-
-    return {
-        firestore: getFirestore()
-    }
-    
 }
 
-initializeFirebase()
-
+const credentials = firebaseCredentials()
 
 const nextConfig = {
     images: {
         domains: ['yt3.ggpht.com'],
     },
+    env: {
+        FIREBASE_CREDENTIALS: credentials,
+    },
 }
+
 
 module.exports = nextConfig

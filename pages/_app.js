@@ -35,7 +35,9 @@ function BaseHtml(props) {
         <meta name="keywords" content="pomodoro, timer, app, focus, foco" />
         <title>Timer Pomodoro</title>
       </Head>
-      {props.children}
+      <body translate="no">
+        {props.children}
+      </body>
 
     </>
   )

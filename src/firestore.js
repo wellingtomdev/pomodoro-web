@@ -1,5 +1,6 @@
-const firebase = process.firebase 
-const db = firebase.firestore
+const { getFirestore } = require('firebase-admin/firestore')
+
+const db = getFirestore()
 
 
 async function getTracks(){

@@ -4,8 +4,15 @@ import '../public/styles/Player.css'
 import '../public/styles/Playlist.css'
 import '../public/styles/TimerSelect.css'
 
+import Analytics from '../src/Analytics'
+
 
 export default function MyApp({ Component, pageProps }) {
-  return (<Component {...pageProps} />)
+  return (
+    <>
+      <Analytics />
+      <Component {...pageProps} />
+    </>
+  )
 }
 

@@ -3,10 +3,11 @@ import Image from 'next/image'
 function PlaylistTrack(props){
     const { track, onClick = () => { } } = props
     const { title, channel, channel_image, id } = track
+    const isAvailable = track?.available == undefined ? true : track?.available
 
     return (
-        <li key={id} onClick={_ => onClick(track)}>
-            <div id='playlist-track'>
+        <li key={id} onClick={_ => isAvailable ? onClick(track) : () => { }} >
+            <div id='playlist-track' className={!isAvailable ? 'track-disabled' : ''}>
                 <div id='playlist-track-image'>
                     <Image
                         width={50}

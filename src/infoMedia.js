@@ -19,6 +19,11 @@ async function getInfo(video_id) {
     return ytdl.getInfo(ref(video_id))
 }
 
+async function isAvailable(video_id) {
+    const info = await getInfo(video_id)
+    return info.formats.length > 0
+}
+
 async function getTrack(video_id) {
     const info = await getInfo(video_id)
     const track = formatTrack(info.videoDetails)
@@ -28,4 +33,5 @@ async function getTrack(video_id) {
 module.exports = {
     getInfo,
     getTrack,
+    isAvailable,
 }

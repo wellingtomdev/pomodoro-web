@@ -59,6 +59,14 @@ async function setPlayedNow(video_id) {
     }
 }
 
+async function setNotAvailable(video_id) {
+    const [storedTrack, doc] = await getTrack(video_id)
+    if (!storedTrack.empty) {
+        return db.collection('tracks').doc(doc.id)
+            .set({ available: false }, { merge: true })
+    }
+}
+
 
 module.exports = {
     getTracks,
@@ -67,4 +75,5 @@ module.exports = {
     atulizeTrack,
     setPlayedNow,
     getMostPlayed,
+    setNotAvailable,
 }

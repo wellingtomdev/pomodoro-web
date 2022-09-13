@@ -194,6 +194,12 @@
     margin: 0;
 }
 
+#playlist-track.track-disabled {
+    opacity: .5;
+    cursor: initial;
+    background-color: #0002;
+}
+
 @keyframes surgir {
     from {
         transform: translateY(5px);

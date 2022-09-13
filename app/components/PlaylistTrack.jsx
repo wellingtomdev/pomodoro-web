@@ -1,12 +1,19 @@
 import Image from 'next/image'
+import api from '../modules/api'
+
+async function atualizeImage(errorEvent, videoId){
+    console.log('atualizeImage')
+    const result = await api.atualizeTrack(videoId)
+    errorEvent.target.src = result.channel_image
+}
 
 function PlaylistTrack(props){
     const { track, onClick = () => { } } = props
-    const { title, channel, channel_image, id } = track
+    const { title, channel, channel_image, video_id } = track
     const isAvailable = track?.available == undefined ? true : track?.available
 
     return (
-        <li key={id} onClick={_ => isAvailable ? onClick(track) : () => { }} >
+        <li key={video_id} onClick={_ => isAvailable ? onClick(track) : () => { }} >
             <div id='playlist-track' className={!isAvailable ? 'track-disabled' : ''}>
                 <div id='playlist-track-image'>
                     <Image
@@ -14,6 +21,7 @@ function PlaylistTrack(props){
                         height={50}
                         src={channel_image}
                         alt={channel}
+                        onError={e => atualizeImage(e, video_id)}
                     />
                 </div>
                 <div id='playlist-track-info'>

@@ -8,8 +8,18 @@ async function atualizeTrack(video_id){
     return response.data
 }
 
-async function getTracks(){
-    const response = await axios.get(`${url_api}/tracks`)
+async function getMostPlayed(){
+    const response = await axios.get(`${url_api}/mostPlayed`)
+    return response.data
+}
+
+async function getMostRecent(){
+    const response = await axios.get(`${url_api}/mostRecent`)
+    return response.data
+}
+
+async function getAllTracks(){
+    const response = await axios.get(`${url_api}/allTracks`)
     return response.data
 }
 
@@ -31,7 +41,9 @@ async function playedNow(video_id){
 export default {
     atualizeTrack,
     playedNow,
-    getTracks,
+    getMostPlayed,
+    getMostRecent,
+    getAllTracks,
     getTrack,
     addTrack,
 }

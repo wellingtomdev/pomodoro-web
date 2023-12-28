@@ -78,7 +78,7 @@
 
 
 .include-track .input .video-link:hover,
-.include-track .input .video-link:focus{
+.include-track .input .video-link:focus {
     border: 1px solid #aaa;
     background-color: #eee;
 }
@@ -208,4 +208,22 @@
     to {
         transform: translateY(0);
     }
+}
+
+.button-title {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: .2s;
+    cursor: pointer;
+    border: 1px solid #0000;
+}
+
+.button-title:hover {
+    background-color: #0001;
+    border: 1px solid #0002;
+}
+
+.button-title.selected {
+    border: 1px solid #0004;
 }

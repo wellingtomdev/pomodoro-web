@@ -14,6 +14,12 @@ async function getMostPlayed() {
     return snapshot.docs.map(doc => doc.data())
 }
 
+async function getMostRecent() {
+    const snapshot = await db.collection('tracks')
+        .limit(20).orderBy('createdAt', 'desc').get()
+    return snapshot.docs.map(doc => doc.data())
+}
+
 async function getTrack(video_id) {
     const storedTrack = await db.collection('tracks').where('video_id', '==', video_id).get()
     if (storedTrack.empty) {
@@ -24,17 +30,21 @@ async function getTrack(video_id) {
 
 async function addTrack(track) {
     const { video_id } = track
-    if(!video_id) { return new Error('video_id is required') }
+    if (!video_id) { return new Error('video_id is required') }
     const [storedTrack] = await getTrack(video_id)
     if (!storedTrack) {
         return db.collection('tracks')
-            .add({ ...track, played_count: 0 })
+            .add({
+                ...track,
+                played_count: 0,
+                createdAt: Timestamp.now(),
+            })
     }
 }
 
 async function atulizeTrack(track) {
     const { video_id } = track
-    if(!video_id) { return new Error('video_id is required') }
+    if (!video_id) { return new Error('video_id is required') }
     const [storedTrack, doc] = await getTrack(video_id)
     if (!storedTrack.empty) {
         return db.collection('tracks').doc(doc.id)
@@ -75,5 +85,6 @@ module.exports = {
     atulizeTrack,
     setPlayedNow,
     getMostPlayed,
+    getMostRecent,
     setNotAvailable,
 }

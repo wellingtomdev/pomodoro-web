@@ -4,7 +4,8 @@ const db = firestore()
 
 
 async function getTracks() {
-    const snapshot = await db.collection('tracks').get()
+    const snapshot = await db.collection('tracks')
+        .orderBy('createdAt', 'desc').get()
     return snapshot.docs.map(doc => doc.data())
 }
 

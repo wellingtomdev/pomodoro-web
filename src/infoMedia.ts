@@ -1,4 +1,4 @@
-import ytdl from 'ytdl-core'
+import ytdl from '@distube/ytdl-core'
 
 function ref(video_id: string) {
     return `https://www.youtube.com/watch?v=${video_id}`
